@@ -20,7 +20,6 @@ class _CalendarState extends State<Calendar> {
       fontWeight: FontWeight.w700,
     );
 
-
     return TableCalendar(
       focusedDay: DateTime.now(),
       firstDay: DateTime(1800),
