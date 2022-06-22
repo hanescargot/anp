@@ -1,28 +1,32 @@
 import 'package:anp/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
-import 'calendar.dart';
 
-class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+class Calendar extends StatelessWidget {
+  final DateTime? selectedDay;
+  final DateTime focusedDay;
+  final OnDaySelected onDaySelected;
 
-  @override
-  State<Calendar> createState() => _CalendarState();
-}
+  const Calendar({
+    required this.selectedDay,
+    required this.focusedDay,
+    required this.onDaySelected,
+    Key? key
+  }) : super(key: key);
 
-class _CalendarState extends State<Calendar> {
-  DateTime? selectedDay;
   @override
   Widget build(BuildContext context) {
     final defaultTextStyle = TextStyle(
       color: Colors.grey[600],
       fontWeight: FontWeight.w700,
     );
+    final defaultBoxDeco = BoxDecoration(
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(16.0),
+    );
 
     return TableCalendar(
-      focusedDay: DateTime.now(),
+      focusedDay: focusedDay,
       firstDay: DateTime(1800),
       lastDay: DateTime(3000),
       rowHeight: 56.0,
@@ -42,11 +46,7 @@ class _CalendarState extends State<Calendar> {
           size: 28,
         ),
       ),
-      onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
-        setState((){
-          this.selectedDay = selectedDay;
-        });
-      },
+      onDaySelected: onDaySelected,
       selectedDayPredicate:  (DateTime date){
         if(selectedDay == null){
           return false;
@@ -57,11 +57,8 @@ class _CalendarState extends State<Calendar> {
       },
       calendarStyle:  CalendarStyle(
         isTodayHighlighted: true,
-        defaultDecoration: BoxDecoration(
-          // shape: BoxShape.circle
-          // color: Colors.red[200],  // 200 : 연하게
-          borderRadius: BorderRadius.circular(16.0),
-        ),
+        weekendDecoration: defaultBoxDeco,
+        defaultDecoration: defaultBoxDeco,
         selectedDecoration: BoxDecoration(
           color: PRIMARY_COLOR_200,
           borderRadius: BorderRadius.circular(16.0)
@@ -79,6 +76,8 @@ class _CalendarState extends State<Calendar> {
               width: 0.8, // 두께
             )
         ),
+        outsideDecoration: defaultBoxDeco,
+
         defaultTextStyle: defaultTextStyle,
         weekendTextStyle: defaultTextStyle,
         selectedTextStyle: defaultTextStyle.copyWith( // 일부만 오버라이드
