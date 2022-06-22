@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+    <defs>
+        <filter id="l9q46mukha" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g data-name="그룹 27411">
+        <g style="filter:url(#l9q46mukha)" data-name="그룹 27394">
+            <g data-name="사각형 11610" transform="translate(9 6)" style="stroke:#8676ff;fill:none">
+                <rect width="42" height="42" rx="17" style="stroke:none"/>
+                <rect x=".5" y=".5" width="41" height="41" rx="16.5" style="fill:none"/>
+            </g>
+        </g>
+    </g>
+</svg>
